@@ -1,0 +1,31 @@
+<h1>Meus Serviços</h1>
+
+<%= link_to 'Criar novo serviço', new_service_path, class: 'btn btn-primary' %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Descrição</th>
+      <th>Categoria</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @services.each do |service| %>
+      <tr>
+        <td><%= service.title %></td>
+        <td><%= service.description %></td>
+        <td><%= service.category %></td>
+        <td>
+          <% if can? :manage, service %>
+            <%= link_to 'Editar', edit_service_path(service), class: 'btn btn-secondary btn-sm' %>
+            <%= button_to 'Excluir', service_path(service), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este serviço?' }, class: 'btn btn-danger btn-sm' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Voltar para a Página Inicial', authenticated_root_path, class: 'btn btn-secondary' %>

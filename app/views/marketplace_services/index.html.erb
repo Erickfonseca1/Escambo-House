@@ -1,0 +1,18 @@
+<h1>Vitrine de Serviços</h1>
+
+<% if @services.any? %>
+  <ul>
+    <% @services.each do |service| %>
+      <li>
+        <strong><%= service.title %></strong><br>
+        <%= service.description %><br>
+        <em>Oferecido por: <%= service.user.name %></em><br>
+        <%= link_to 'Solicitar Troca', new_exchange_path(service_requested_id: service.id), class: 'btn btn-success' %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Não há serviços disponíveis de outros usuários no momento.</p>
+<% end %>
+
+<%= link_to 'Voltar para a Página Inicial', authenticated_root_path, class: 'btn btn-secondary' %>

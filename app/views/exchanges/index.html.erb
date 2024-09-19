@@ -1,0 +1,37 @@
+<h1>Minhas Trocas</h1>
+
+<%= link_to 'Solicitar nova troca', marketplace_services_path, class: 'btn btn-primary' %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Solicitante</th>
+      <th>Serviço Oferecido</th>
+      <th>Serviço Solicitado</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @exchanges.each do |exchange| %>
+      <tr>
+        <td>
+          <% if exchange.requester == current_user %>
+            Eu
+          <% else %>
+            <%= exchange.requester.name %>
+          <% end %>
+        </td>
+        <td><%= exchange.service_offered.title %></td>
+        <td><%= exchange.service_requested.title %></td>
+        <td><%= exchange.status %></td>
+        <td>
+          <%= link_to 'Editar', edit_exchange_path(exchange), class: 'btn btn-secondary btn-sm' %>
+          <%= button_to 'Excluir', exchange_path(exchange), method: :delete, data: { confirm: 'Tem certeza que deseja excluir esta troca?' }, class: 'btn btn-danger btn-sm' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Voltar para a Página Inicial', authenticated_root_path, class: 'btn btn-secondary' %>

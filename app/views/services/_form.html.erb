@@ -1,0 +1,22 @@
+<h1><%= @service.new_record? ? 'Novo Serviço' : 'Editar Serviço' %></h1>
+
+<%= form_with(model: @service, local: true) do |form| %>
+  <div>
+    <%= form.label :title, "Título do Serviço" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, "Descrição" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :category, "Categoria" %>
+    <%= form.select :category, Service::CATEGORIES, prompt: "Selecione uma Categoria" %>
+  </div>
+
+  <div>
+    <%= form.submit @service.new_record? ? 'Criar Serviço' : 'Atualizar Serviço' %>
+  </div>
+<% end %>

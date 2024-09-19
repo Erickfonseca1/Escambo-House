@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: one
+  requester: one
+  service_offered: one
+  service_requested: one
+  status: MyString
+
+two:
+  owner: two
+  requester: two
+  service_offered: two
+  service_requested: two
+  status: MyString

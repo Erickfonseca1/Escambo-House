@@ -1,0 +1,17 @@
+<h1>Bem-vindo, <%= current_user.name %>!</h1>
+
+<div>
+  <%= link_to 'Seus Serviços', services_path, class: 'btn btn-primary' %>
+</div>
+
+<div>
+  <%= link_to 'Suas Trocas', exchanges_path, class: 'btn btn-primary' %>
+</div>
+
+<div>
+  <%= link_to 'Vitrine de Serviços', marketplace_services_path, class: 'btn btn-primary' %>
+</div>
+
+<div>
+  <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+</div>

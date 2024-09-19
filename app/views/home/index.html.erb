@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+  <h1>Bem-vindo, <%= current_user.email %></h1>
+  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+<% else %>
+  <h1>Bem-vindo ao Escambo House</h1>
+  <%= link_to 'Login', new_user_session_path %> ou
+  <%= link_to 'Registrar', new_user_registration_path %>
+<% end %>
