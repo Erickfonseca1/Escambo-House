@@ -1,24 +1,52 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Escambo House
 
-Things you may want to cover:
+Escambo House é uma plataforma voltada para moradores de condomínios residenciais, permitindo a troca de serviços entre os usuários sem envolver dinheiro.
 
-* Ruby version
+## Instalação e Configuração
 
-* System dependencies
+### 1. Instalar as dependências
 
-* Configuration
+Execute o comando abaixo para instalar as dependências do projeto:
 
-* Database creation
+```bash
+bundle install
+```
 
-* Database initialization
+### 2. Instalar as dependências do Yarn
 
-* How to run the test suite
+Certifique-se de que o Yarn está instalado e, em seguida, execute:
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+yarn install
+```
 
-* Deployment instructions
+### 3. Corrigir possíveis problemas de instalação de pacotes
 
-* ...
+Caso algum pacote não seja instalado corretamente, execute os seguintes comandos:
+
+```bash
+rails assets:precompile
+bin/importmap pin bootstrap
+bin/importmap pin bootstrap-icons
+```
+
+### 4. Configurar o banco de dados
+
+Crie o banco de dados, execute as migrações e preencha o banco com os dados de exemplo (seed):
+
+```bash
+rails db:create
+rails db:migrate
+rails db:seed
+```
+
+### 5. Executar o projeto
+
+Para iniciar o servidor local, utilize o comando:
+
+```bash
+rails s
+```
+
+A aplicação estará disponível em [http://localhost:3000](http://localhost:3000).
