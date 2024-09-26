@@ -38,6 +38,12 @@ gem 'devise'
 
 gem 'cancancan', '~> 3.0'
 
+gem 'kaminari'
+
+gem 'bootstrap', '~> 5.1.0'
+gem 'sassc-rails'
+
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ], require: "debug/prelude"

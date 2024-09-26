@@ -1,22 +1,22 @@
-<h1><%= @service.new_record? ? 'Novo Serviço' : 'Editar Serviço' %></h1>
+<h1 class="mb-4"><%= @service.new_record? ? 'Novo Serviço' : 'Editar Serviço' %></h1>
 
 <%= form_with(model: @service, local: true) do |form| %>
-  <div>
-    <%= form.label :title, "Título do Serviço" %>
-    <%= form.text_field :title %>
+  <div class="form-group mb-3">
+    <%= form.label :title, "Título do Serviço", class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :description, "Descrição" %>
-    <%= form.text_area :description %>
+  <div class="form-group mb-3">
+    <%= form.label :description, "Descrição", class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.label :category, "Categoria" %>
-    <%= form.select :category, Service::CATEGORIES, prompt: "Selecione uma Categoria" %>
+  <div class="form-group mb-3">
+    <%= form.label :category, "Categoria", class: "form-label" %>
+    <%= form.select :category, Service::CATEGORIES, prompt: "Selecione uma Categoria", class: "form-control", required: true %>
   </div>
 
-  <div>
-    <%= form.submit @service.new_record? ? 'Criar Serviço' : 'Atualizar Serviço' %>
+  <div class="d-flex justify-content-end">
+    <%= form.submit 'Criar Serviço', class: "btn btn-primary" %>
   </div>
 <% end %>

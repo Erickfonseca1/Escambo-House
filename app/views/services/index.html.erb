@@ -1,31 +1,170 @@
-<h1>Meus Serviços</h1>
+<style>
+/* Estilização para a página de Trocas */
 
-<%= link_to 'Criar novo serviço', new_service_path, class: 'btn btn-primary' %>
+/* Título e botão na mesma linha */
+h1.d-inline-block {
+  font-size: 2.5rem;
+  color: #242038; /* Dark Purple */
+  margin-bottom: 1.5rem;
+}
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Título</th>
-      <th>Descrição</th>
-      <th>Categoria</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @services.each do |service| %>
-      <tr>
-        <td><%= service.title %></td>
-        <td><%= service.description %></td>
-        <td><%= service.category %></td>
-        <td>
-          <% if can? :manage, service %>
-            <%= link_to 'Editar', edit_service_path(service), class: 'btn btn-secondary btn-sm' %>
-            <%= button_to 'Excluir', service_path(service), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este serviço?' }, class: 'btn btn-danger btn-sm' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+/* Botão de solicitar troca alinhado à direita */
+.btn-primary.float-right {
+  background-color: #9067C6; /* Amethyst */
+  border-color: #9067C6;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  float: right;
+  margin-top: -10px; /* Alinha com o título */
+}
 
-<%= link_to 'Voltar para a Página Inicial', authenticated_root_path, class: 'btn btn-secondary' %>
+.btn-primary.float-right:hover {
+  background-color: #8D86C9; /* Tropical Indigo */
+  border-color: #8D86C9;
+}
+
+/* Espaçamento entre seções */
+.mt-4 {
+  margin-top: 2rem;
+}
+
+.mb-5 {
+  margin-bottom: 3rem;
+}
+
+/* Estilização das tabelas */
+.table {
+  background-color: #F7ECE1; /* Linen */
+  border-radius: 8px;
+} 
+
+.table th {
+  background-color: #242038; /* Amethyst */
+  color: #F7ECE1; /* Linen */
+  text-align: center;
+}
+
+.table td {
+  text-align: center;
+  color: #242038; /* Dark Purple */
+}
+
+.table-striped tbody tr {
+  background-color: #f9f9f9;
+}
+
+
+/* Botões de ação */
+.btn-danger, .btn-secondary {
+  font-size: 1rem;
+  padding: 6px 12px;
+}
+
+.btn-danger {
+  background-color: #D9534F;
+  border-color: #D43F3A;
+}
+
+.btn-danger:hover {
+  background-color: #C9302C;
+  border-color: #AC2925;
+}
+
+.btn-secondary {
+  background-color: #8D86C9; /* Tropical Indigo */
+  border-color: #8D86C9;
+}
+
+.btn-secondary:hover {
+  background-color: #9067C6; /* Amethyst */
+  border-color: #9067C6;
+}
+
+/* Estilização da paginação */
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.25rem;
+}
+
+/* Estilização dos itens da paginação */
+.pagination li {
+  margin: 0 5px;
+}
+
+.pagination a, .pagination span {
+  color: #242038; /* Dark Purple */
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  background-color: #FFFFFF; /* White */
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+/* Estilo ao passar o mouse */
+.pagination a:hover {
+  background-color: #242038; /* Dark Purple */
+  color: #FFFFFF; /* White */
+}
+
+/* Página ativa */
+.pagination .page-item.active .page-link {
+  background-color: #242038; /* Dark Purple */
+  border-color: #242038; /* Dark Purple */
+  color: #FFFFFF; /* White */
+  border: 2px solid #242038; /* Dark Purple */
+}
+
+/* Links desabilitados */
+.pagination .page-item.disabled .page-link {
+  color: #CAC4CE; /* French Gray */
+  pointer-events: none;
+  background-color: #f7f7f7;
+  border-color: #dee2e6;
+}
+
+</style>
+
+
+<h1 class="d-inline-block">Meus Serviços</h1>
+<%= link_to 'Criar novo serviço', new_service_path, class: 'btn btn-primary float-right' %>
+
+<div class="mt-4">
+  <% if @services.any? %>
+    <table class="table table-striped mt-4">
+      <thead class="thead-dark">
+        <tr>
+          <th>Título</th>
+          <th>Descrição</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @services.each do |service| %>
+          <tr>
+            <td><%= service.title %></td>
+            <td><%= service.description %></td>
+            <td><%= service.category %></td>
+            <td>
+              <% if can? :manage, service %>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                  <%= link_to 'Editar', edit_service_path(service), class: 'btn btn-secondary btn-sm mr-2' %>
+                  <%= button_to 'Excluir', service_path(service), method: :delete, data: { confirm: 'Tem certeza que deseja excluir este serviço?' }, class: 'btn btn-danger btn-sm' %>
+                </div>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @services%>
+  <% else %>
+    <div class="alert alert-info mt-4">
+      Você ainda não possui serviços cadastrados.
+    </div>
+  <% end %>
+</div>

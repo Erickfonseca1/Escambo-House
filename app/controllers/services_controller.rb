@@ -3,7 +3,7 @@ class ServicesController < ApplicationController
 
   def index
     # @services = Service.all
-    @services = current_user.services
+    @services = current_user.services.page(params[:page]).per(10)
   end
 
   def new

@@ -1,0 +1,48 @@
+<style>
+  /* Estilização da Sidebar */
+  #sidebar-wrapper {
+    width: 250px;
+    height: 100%;
+    background-color: #242038; /* Dark Purple */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding-top: 1rem;
+  }
+
+  .sidebar-heading {
+    font-size: 1.5rem;
+    color: #F7ECE1; /* Linen */
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 75px;
+  }
+
+  .list-group-item-action {
+    background-color: #242038; /* Dark Purple */
+    color: #F7ECE1; /* Linen */
+    padding: 1rem 1.5rem;
+    border: none;
+  }
+
+  .list-group-item-action:hover {
+    background-color: #9067C6; /* Amethyst */
+    color: white;
+  }
+
+  .list-group-item-action:active, .list-group-item-action:focus {
+    background-color: #8D86C9; /* Tropical Indigo */
+    color: white;
+  }
+</style>
+
+<div id="sidebar-wrapper">
+  <div class="sidebar-heading">Escambo House</div>
+  <div class="list-group list-group-flush">
+    <%= link_to "Página Inicial", authenticated_root_path, class: "list-group-item list-group-item-action" %>
+    <%= link_to "Trocas", exchanges_path, class: "list-group-item list-group-item-action" %>
+    <%= link_to "Serviços", services_path, class: "list-group-item list-group-item-action" %>
+    <%= link_to 'Vitrine de Serviços', marketplace_services_path, class: "list-group-item list-group-item-action" %>
+  </div>
+</div>

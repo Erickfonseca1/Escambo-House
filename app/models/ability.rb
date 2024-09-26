@@ -4,19 +4,24 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # Usuário não logado (guest) pode apenas ver a vitrine de serviços (marketplace)
-    if user.nil?
-      can :read, Service
-    else
-      # Usuário comum pode criar serviços e gerenciar suas próprias trocas
+    # Permissões para usuários logados
+    if user.present?
+      # O usuário pode criar e gerenciar os próprios serviços
       can :manage, Service, user_id: user.id
+
+      # O usuário pode gerenciar trocas que ele solicitou
       can :manage, Exchange, requester_id: user.id
 
+      # O usuário pode editar apenas as trocas que foram solicitadas a ele
+      can [ :edit, :update ], Exchange, owner_id: user.id
 
-      # Caso o usuário seja admin, ele tem controle total
+      # Caso o usuário seja admin, ele pode gerenciar tudo
       if user.admin?
         can :manage, :all
       end
+    else
+      # Usuários não logados podem apenas ler serviços
+      can :read, Service
     end
   end
 end

@@ -1,17 +1,66 @@
-<h1>Bem-vindo, <%= current_user.name %>!</h1>
+<style>
+  .welcome-heading {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #242038; /* Dark Purple */
+  }
 
-<div>
-  <%= link_to 'Seus Serviços', services_path, class: 'btn btn-primary' %>
-</div>
+  .menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-<div>
-  <%= link_to 'Suas Trocas', exchanges_path, class: 'btn btn-primary' %>
-</div>
+  .menu-item {
+    margin: 1rem 0;
+  }
 
-<div>
-  <%= link_to 'Vitrine de Serviços', marketplace_services_path, class: 'btn btn-primary' %>
-</div>
+  /* Botões estilizados */
+  .btn-primary-home {
+    background-color: #9067C6; /* Amethyst */
+    border-color: #9067C6;
+    color: #fff;
+    width: 300px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+  }
 
-<div>
-  <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+  .btn-primary-home:hover {
+    background-color: #8D86C9; /* Tropical Indigo */
+    border-color: #8D86C9;
+  }
+
+  .btn-danger {
+    background-color: #D9534F;
+    border-color: #D43F3A;
+    width: 300px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+  }
+
+  .btn-danger:hover {
+    background-color: #C9302C;
+    border-color: #AC2925;
+  }
+</style>
+
+<h1 class="welcome-heading">Bem-vindo, <%= current_user.name %>!</h1>
+
+<div class="menu-container">
+  <div class="menu-item">
+    <%= link_to 'Seus Serviços', services_path, class: 'btn btn-primary-home btn-lg' %>
+  </div>
+
+  <div class="menu-item">
+    <%= link_to 'Suas Trocas', exchanges_path, class: 'btn btn-primary-home btn-lg' %>
+  </div>
+
+  <div class="menu-item">
+    <%= link_to 'Vitrine de Serviços', marketplace_services_path, class: 'btn btn-primary-home btn-lg' %>
+  </div>
+
+  <div class="menu-item">
+    <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: 'btn btn-danger btn-lg' %>
+  </div>
 </div>

@@ -1,0 +1,19 @@
+<h1><%= @exchange.new_record? ? 'Nova Troca' : 'Editar Troca' %></h1>
+
+<%= form_with model: @exchange, local: true do |form| %>
+  <div>
+    <p>Serviço oferecido: <strong><%= @exchange.service_offered.title %></strong></p>
+    <p>Serviço solicitado: <strong><%= @exchange.service_requested.title %></strong></p>
+    <p>Descrição da troca: <%= @exchange.description %></p>
+  </div>
+
+  
+  <div>
+    <%= form.label :status, 'Status da Troca' %>
+    <%= form.select :status, ['accepted', 'rejected'], prompt: "Selecione o status" %>
+  </div>
+
+  <div>
+    <%= form.submit @exchange.new_record? ? 'Criar Troca' : 'Atualizar Troca', class: 'btn btn-primary' %>
+  </div>
+<% end %>

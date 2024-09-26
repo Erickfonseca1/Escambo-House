@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_19_002728) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_25_135549) do
   create_table "exchanges", force: :cascade do |t|
     t.integer "owner_id", null: false
     t.integer "requester_id", null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_19_002728) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["owner_id"], name: "index_exchanges_on_owner_id"
     t.index ["requester_id"], name: "index_exchanges_on_requester_id"
     t.index ["service_offered_id"], name: "index_exchanges_on_service_offered_id"

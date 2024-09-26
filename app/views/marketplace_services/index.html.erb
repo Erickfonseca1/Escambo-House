@@ -1,18 +1,75 @@
-<h1>Vitrine de Serviços</h1>
+<style>
+  /* Estilização da paginação */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+  }
+
+  /* Estilização dos itens da paginação */
+  .pagination li {
+    margin: 0 5px;
+  }
+
+  .pagination span {
+    border: 1px solid #dee2e6;
+  }
+
+  .pagination a, .pagination span {
+    color: #242038; /* Dark Purple */
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    background-color: #FFFFFF; /* White */
+    border-radius: 0.25rem;
+    font-size: 1rem;
+  }
+
+  /* Estilo ao passar o mouse */
+  .pagination a:hover {
+    background-color: #242038; /* Dark Purple */
+    color: #FFFFFF; /* White */
+  }
+
+  /* Página ativa */
+  .pagination .page-item.active .page-link {
+    background-color: #242038; /* Dark Purple */
+    border-color: #242038; /* Dark Purple */
+    color: #FFFFFF; /* White */
+    border: 2px solid #242038; /* Dark Purple */
+  }
+
+  /* Links desabilitados */
+  .pagination .page-item.disabled .page-link {
+    color: #CAC4CE; /* French Gray */
+    pointer-events: none;
+    background-color: #f7f7f7;
+    border-color: #dee2e6;
+  }
+</style>
+
+<h1 class="mb-4">Vitrine de Serviços</h1>
 
 <% if @services.any? %>
-  <ul>
+  <div class="row">
     <% @services.each do |service| %>
-      <li>
-        <strong><%= service.title %></strong><br>
-        <%= service.description %><br>
-        <em>Oferecido por: <%= service.user.name %></em><br>
-        <%= link_to 'Solicitar Troca', new_exchange_path(service_requested_id: service.id), class: 'btn btn-success' %>
-      </li>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><strong><%= service.title %></strong></h5>
+            <p class="card-text"><%= service.description %></p>
+            <p class="card-text"><em>Oferecido por: <%= service.user.name %></em></p>
+          </div>
+          <div class="card-footer text-center">
+            <%= link_to 'Solicitar Troca', new_exchange_path(service_requested_id: service.id), class: 'btn btn-success' %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </ul>
+  </div>
+
+  <%= paginate @services %>
 <% else %>
   <p>Não há serviços disponíveis de outros usuários no momento.</p>
 <% end %>
-
-<%= link_to 'Voltar para a Página Inicial', authenticated_root_path, class: 'btn btn-secondary' %>

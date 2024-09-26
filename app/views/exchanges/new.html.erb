@@ -1,10 +1,15 @@
-<h1>Solicitar Troca</h1>
+<h1 class="mb-4">Solicitar Troca</h1>
 
 <% if @services.any? %>
-  <%= form_with model: @exchange, local: true do |form| %>
-    <div>
-      <%= form.label :service_offered_id, 'Seu Serviço' %>
-      <%= form.collection_select :service_offered_id, @services, :id, :title, prompt: "Selecione um serviço" %>
+  <%= form_with model: @exchange, local: true, class: 'needs-validation' do |form| %>
+    <div class="mb-3">
+      <%= form.label :service_offered_id, 'Seu Serviço', class: 'form-label' %>
+      <%= form.collection_select :service_offered_id, @services, :id, :title, prompt: "Selecione um serviço", class: 'form-select' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description, 'Descrição da Troca:', class: 'form-label' %>
+      <%= form.text_area :description, rows: 5, placeholder: "Descreva os detalhes da troca, por exemplo: '1 mês de limpeza residencial por 15 dias de personal trainer.'", class: 'form-control' %>
     </div>
 
     <% if @service_requested %>
@@ -13,11 +18,11 @@
       <%= form.hidden_field :owner_id, value: @service_requested.user.id %>
     <% end %>
 
-    <div>
-      <%= form.submit 'Solicitar Troca', class: 'btn btn-success' %>
+    <div class="mt-4">
+      <%= form.submit 'Solicitar Troca', class: 'btn btn-success btn-lg' %>
     </div>
   <% end %>
 <% else %>
-  <p>Você ainda não tem serviços disponíveis para trocar.</p>
+  <p class="alert alert-info">Você ainda não tem serviços disponíveis para trocar.</p>
   <%= link_to 'Adicionar um novo serviço', new_service_path, class: 'btn btn-primary' %>
 <% end %>
