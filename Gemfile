@@ -40,7 +40,7 @@ gem 'cancancan', '~> 3.0'
 
 gem 'kaminari'
 
-gem 'bootstrap', '~> 5.1.0'
+gem 'bootstrap', '~> 5.3.3'
 gem 'sassc-rails'
 
 gem 'simplecov', require: false, group: :test
