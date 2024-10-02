@@ -43,6 +43,8 @@ gem 'kaminari'
 gem 'bootstrap', '~> 5.1.0'
 gem 'sassc-rails'
 
+gem 'simplecov', require: false, group: :test
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -68,3 +70,8 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 6.0'
+end
+
